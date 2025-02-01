@@ -4,13 +4,17 @@
 """
 
 import os
+from pathlib import Path
 import aiohttp
 from loguru import logger
 from typing import Optional
 from dotenv import load_dotenv
 
+# 获取项目根目录
+ROOT_DIR = Path(__file__).parent.parent.parent
+
 # 加载环境变量
-load_dotenv('config/.env')
+load_dotenv(os.path.join(ROOT_DIR, 'config', '.env'))
 
 def parse_bool(value):
     """解析布尔值"""

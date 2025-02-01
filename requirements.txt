@@ -11,4 +11,6 @@ aiohttp==3.9.1
 qrcode==7.4.2
 pillow==10.0.0  # qrcode 的依赖 
 pywebpush==1.14.0
-aiohttp-jinja2==1.5.1 
+aiohttp-jinja2==1.5.1
+cloudscraper==1.2.71
+playwright==1.41.1 
