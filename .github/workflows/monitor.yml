@@ -1,21 +1,20 @@
 name: DeepSeek Monitor
 
 on:
-  push:
-    branches: [ main ]
   schedule:
-    - cron: '*/10 * * * *'  # 每10分钟运行一次
+    - cron: '*/30 * * * *'  # 每30分钟运行一次
   workflow_dispatch:  # 支持手动触发
 
 jobs:
   monitor:
-    runs-on: ubuntu-22.04  # 使用更稳定的Ubuntu版本
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5  # 设置超时时间
     
     steps:
-    - uses: actions/checkout@v3  # 使用v3版本
+    - uses: actions/checkout@v3
     
     - name: Set up Python
-      uses: actions/setup-python@v4  # 使用v4版本
+      uses: actions/setup-python@v4
       with:
         python-version: '3.10'
         cache: 'pip'
@@ -68,7 +67,25 @@ jobs:
       run: mkdir -p logs
         
     - name: Run monitor
+      id: monitor
+      continue-on-error: true  # 允许监控脚本失败但继续执行后续步骤
       run: |
         xvfb-run --auto-servernum python src/main.py
       env:
-        PYTHONUNBUFFERED: 1 
+        PYTHONUNBUFFERED: 1
+        
+    - name: Send failure notification
+      if: ${{ failure() || steps.monitor.outcome == 'failure' }}  # 如果任何步骤失败或监控脚本失败
+      run: |
+        # 发送工作流失败通知
+        curl -X POST \
+          "https://sctapi.ftqq.com/${{ secrets.SERVERCHAN_KEY }}.send" \
+          -d "title=🚨 DeepSeek监控工作流执行失败" \
+          -d "desp=工作流执行时间: $(date '+%Y-%m-%d %H:%M:%S')%0A%0A请检查GitHub Actions日志以获取详细信息：%0A${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+      continue-on-error: true  # 即使发送失败通知失败也不影响工作流状态
+      
+    - name: Clean up
+      if: always()  # 无论成功失败都执行清理
+      run: |
+        rm -rf logs/*  # 清理日志文件
+        rm -rf /tmp/.X*-lock || true  # 清理可能的X server锁文件 
