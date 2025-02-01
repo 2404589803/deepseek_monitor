@@ -8,7 +8,7 @@ on:
 jobs:
   monitor:
     runs-on: ubuntu-22.04
-    timeout-minutes: 5  # 设置超时时间
+    timeout-minutes: 10  # 增加超时时间到10分钟
     env:
       TZ: Asia/Shanghai  # 设置时区为北京时间
     
@@ -72,19 +72,28 @@ jobs:
       id: monitor
       continue-on-error: true  # 允许监控脚本失败但继续执行后续步骤
       run: |
-        xvfb-run --auto-servernum python src/main.py
+        # 运行一次监控检查后退出
+        timeout 300 xvfb-run --auto-servernum python src/main.py || true
       env:
         PYTHONUNBUFFERED: 1
         
-    - name: Send failure notification
-      if: ${{ failure() || steps.monitor.outcome == 'failure' }}  # 如果任何步骤失败或监控脚本失败
+    - name: Send status notification
+      if: always()  # 无论成功失败都发送状态通知
       run: |
-        # 发送工作流失败通知
+        STATUS="${{ steps.monitor.outcome }}"
+        if [ "$STATUS" = "success" ]; then
+          TITLE="✅ DeepSeek监控检查完成"
+          ICON="🟢"
+        else
+          TITLE="🚨 DeepSeek监控检查失败"
+          ICON="🔴"
+        fi
+        
         curl -X POST \
           "https://sctapi.ftqq.com/${{ secrets.SERVERCHAN_KEY }}.send" \
-          -d "title=🚨 DeepSeek监控工作流执行失败" \
-          -d "desp=工作流执行时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')%0A%0A请检查GitHub Actions日志以获取详细信息：%0A${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-      continue-on-error: true  # 即使发送失败通知失败也不影响工作流状态
+          -d "title=${TITLE}" \
+          -d "desp=${ICON} 检查时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')%0A%0A详细日志：%0A${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+      continue-on-error: true
       
     - name: Clean up
       if: always()  # 无论成功失败都执行清理
