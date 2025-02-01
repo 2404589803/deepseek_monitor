@@ -43,7 +43,7 @@ jobs:
           libxkbcommon0 \
           xvfb \
           fonts-noto-color-emoji \
-          ttf-unifont
+          fonts-unifont
         
     - name: Install Python dependencies
       run: |
