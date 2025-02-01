@@ -12,21 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.10'
+        cache: 'pip'
         
-    - name: Cache pip packages
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
-          
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -34,18 +27,16 @@ jobs:
         
     - name: Create env file
       run: |
+        mkdir -p config
         echo "DEEPSEEK_API_KEY=${{ secrets.DEEPSEEK_API_KEY }}" >> config/.env
         echo "ENABLE_SERVERCHAN=${{ secrets.ENABLE_SERVERCHAN }}" >> config/.env
         echo "SERVERCHAN_KEY=${{ secrets.SERVERCHAN_KEY }}" >> config/.env
         echo "ENABLE_TELEGRAM=${{ secrets.ENABLE_TELEGRAM }}" >> config/.env
         echo "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> config/.env
         echo "TELEGRAM_CHAT_ID=${{ secrets.TELEGRAM_CHAT_ID }}" >> config/.env
-        echo "ENABLE_EMAIL=${{ secrets.ENABLE_EMAIL }}" >> config/.env
-        echo "SMTP_SERVER=${{ secrets.SMTP_SERVER }}" >> config/.env
-        echo "SMTP_PORT=${{ secrets.SMTP_PORT }}" >> config/.env
-        echo "SMTP_USERNAME=${{ secrets.SMTP_USERNAME }}" >> config/.env
-        echo "SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}" >> config/.env
-        echo "ALERT_RECIPIENTS=${{ secrets.ALERT_RECIPIENTS }}" >> config/.env
+        
+    - name: Create log directory
+      run: mkdir -p logs
         
     - name: Run monitor
       run: |
