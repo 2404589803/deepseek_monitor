@@ -202,3 +202,94 @@
 
 🔗 快速访问:
 https://chat.deepseek.com
+2025-02-01 11:37:43.074 | INFO     | api_monitor.monitor:monitor_once:227 - 开始执行监控检查...
+2025-02-01 11:37:43.075 | INFO     | api_monitor.monitor:check_api_status:83 - 正在检查 API 状态...
+2025-02-01 11:37:43.077 | INFO     | api_monitor.monitor:check_api_status:86 - API密钥未配置，跳过API检查
+2025-02-01 11:37:43.078 | INFO     | api_monitor.monitor:check_web_status:123 - 正在检查网页版状态...
+2025-02-01 11:37:45.321 | INFO     | api_monitor.monitor:check_web_status:162 - 正在连接网页: https://chat.deepseek.com (第1次尝试)
+2025-02-01 11:37:46.787 | INFO     | api_monitor.monitor:check_web_status:181 - 网页响应状态码: 403
+2025-02-01 11:37:46.788 | INFO     | api_monitor.monitor:check_web_status:182 - 网页响应头: {'accept-ch': 'Sec-CH-UA-Bitness, Sec-CH-UA-Arch, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform, Sec-CH-UA, UA-Bitness, UA-Arch, UA-Full-Version, UA-Mobile, UA-Model, UA-Platform-Version, UA-Platform, UA', 'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0', 'cf-chl-out': 'vgG1wlNyCb32HlwXOyy3HeEkGZezdnb9UQzV+RQ4pXdIDAoc8satf+K/Y/lsbZcB1EmQb44kW8fNg78YcJPIfn3qUkS694Omq+mByjZASlKoxIvpKuRz7IGe65qTsbQygV9CWjsZ2345UrcbCDtJdQ==$9iIclGQKgs9P/iEMmBNbNg==', 'cf-mitigated': 'challenge', 'cf-ray': '90aee7aac8b2f7c1-LAX', 'content-encoding': 'gzip', 'content-type': 'text/html; charset=UTF-8', 'critical-ch': 'Sec-CH-UA-Bitness, Sec-CH-UA-Arch, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform, Sec-CH-UA, UA-Bitness, UA-Arch, UA-Full-Version, UA-Mobile, UA-Model, UA-Platform-Version, UA-Platform, UA', 'cross-origin-embedder-policy': 'require-corp', 'cross-origin-opener-policy': 'same-origin', 'cross-origin-resource-policy': 'same-origin', 'date': 'Sat, 01 Feb 2025 03:37:47 GMT', 'expires': 'Thu, 01 Jan 1970 00:00:01 GMT', 'origin-agent-cluster': '?1', 'permissions-policy': 'accelerometer=(),autoplay=(),browsing-topics=(),camera=(),clipboard-read=(),clipboard-write=(),geolocation=(),gyroscope=(),hid=(),interest-cohort=(),magnetometer=(),microphone=(),payment=(),publickey-credentials-get=(),screen-wake-lock=(),serial=(),sync-xhr=(),usb=()', 'referrer-policy': 'same-origin', 'server': 'cloudflare', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'vary': 'Accept-Encoding', 'x-content-options': 'nosniff', 'x-content-type-options': 'nosniff', 'x-frame-options': 'SAMEORIGIN'}
+2025-02-01 11:37:52.359 | INFO     | api_monitor.monitor:monitor_once:303 - DeepSeek 服务状态报告
+
+📅 检测时间: 2025-02-01 11:37:52
+
+服务状态:
+🟢 API: API检查已跳过（未配置密钥）
+🟢 网页版: 网页版服务正常
+
+📊 监控信息:
+• 连续错误次数: 0/3
+• 检测间隔: 60秒
+• 下次检测: 11:38:52
+
+🔗 快速访问:
+https://chat.deepseek.com
+2025-02-01 11:38:52.363 | INFO     | api_monitor.monitor:monitor_once:227 - 开始执行监控检查...
+2025-02-01 11:38:52.364 | INFO     | api_monitor.monitor:check_api_status:83 - 正在检查 API 状态...
+2025-02-01 11:38:52.364 | INFO     | api_monitor.monitor:check_api_status:86 - API密钥未配置，跳过API检查
+2025-02-01 11:38:52.365 | INFO     | api_monitor.monitor:check_web_status:123 - 正在检查网页版状态...
+2025-02-01 11:38:54.239 | INFO     | api_monitor.monitor:check_web_status:162 - 正在连接网页: https://chat.deepseek.com (第1次尝试)
+2025-02-01 11:38:56.395 | INFO     | api_monitor.monitor:check_web_status:181 - 网页响应状态码: 403
+2025-02-01 11:38:56.396 | INFO     | api_monitor.monitor:check_web_status:182 - 网页响应头: {'accept-ch': 'Sec-CH-UA-Bitness, Sec-CH-UA-Arch, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform, Sec-CH-UA, UA-Bitness, UA-Arch, UA-Full-Version, UA-Mobile, UA-Model, UA-Platform-Version, UA-Platform, UA', 'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0', 'cf-chl-out': 'NCm5ZdQROKTxxIbPySsv+w7gNISOb9OMzSdQfIPUWut7j1ui+7Xh35HZA32MWOUw04NpbQRwkHXSigw7VR+AH+cWpoDCpGAjLgKSAWdN/R7nKqS7VKANs5pNb2CRcAvq7A4ULv4EJ1JaokVqpU3WBw==$OzbQrjzJC++7O+/RCcGnWw==', 'cf-mitigated': 'challenge', 'cf-ray': '90aee95e3e69f7b3-LAX', 'content-encoding': 'gzip', 'content-type': 'text/html; charset=UTF-8', 'critical-ch': 'Sec-CH-UA-Bitness, Sec-CH-UA-Arch, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform, Sec-CH-UA, UA-Bitness, UA-Arch, UA-Full-Version, UA-Mobile, UA-Model, UA-Platform-Version, UA-Platform, UA', 'cross-origin-embedder-policy': 'require-corp', 'cross-origin-opener-policy': 'same-origin', 'cross-origin-resource-policy': 'same-origin', 'date': 'Sat, 01 Feb 2025 03:38:57 GMT', 'expires': 'Thu, 01 Jan 1970 00:00:01 GMT', 'origin-agent-cluster': '?1', 'permissions-policy': 'accelerometer=(),autoplay=(),browsing-topics=(),camera=(),clipboard-read=(),clipboard-write=(),geolocation=(),gyroscope=(),hid=(),interest-cohort=(),magnetometer=(),microphone=(),payment=(),publickey-credentials-get=(),screen-wake-lock=(),serial=(),sync-xhr=(),usb=()', 'referrer-policy': 'same-origin', 'server': 'cloudflare', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'vary': 'Accept-Encoding', 'x-content-options': 'nosniff', 'x-content-type-options': 'nosniff', 'x-frame-options': 'SAMEORIGIN'}
+2025-02-01 11:39:01.401 | WARNING  | api_monitor.monitor:check_web_status:188 - 等待网络空闲超时，但继续检查
+2025-02-01 11:39:02.012 | INFO     | api_monitor.monitor:monitor_once:303 - DeepSeek 服务状态报告
+
+📅 检测时间: 2025-02-01 11:39:02
+
+服务状态:
+🟢 API: API检查已跳过（未配置密钥）
+🟢 网页版: 网页版服务正常
+
+📊 监控信息:
+• 连续错误次数: 0/3
+• 检测间隔: 60秒
+• 下次检测: 11:40:02
+
+🔗 快速访问:
+https://chat.deepseek.com
+2025-02-01 11:40:02.020 | INFO     | api_monitor.monitor:monitor_once:227 - 开始执行监控检查...
+2025-02-01 11:40:02.021 | INFO     | api_monitor.monitor:check_api_status:83 - 正在检查 API 状态...
+2025-02-01 11:40:02.021 | INFO     | api_monitor.monitor:check_api_status:86 - API密钥未配置，跳过API检查
+2025-02-01 11:40:02.022 | INFO     | api_monitor.monitor:check_web_status:123 - 正在检查网页版状态...
+2025-02-01 11:40:03.894 | INFO     | api_monitor.monitor:check_web_status:162 - 正在连接网页: https://chat.deepseek.com (第1次尝试)
+2025-02-01 11:40:05.329 | INFO     | api_monitor.monitor:check_web_status:181 - 网页响应状态码: 403
+2025-02-01 11:40:05.330 | INFO     | api_monitor.monitor:check_web_status:182 - 网页响应头: {'accept-ch': 'Sec-CH-UA-Bitness, Sec-CH-UA-Arch, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform, Sec-CH-UA, UA-Bitness, UA-Arch, UA-Full-Version, UA-Mobile, UA-Model, UA-Platform-Version, UA-Platform, UA', 'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0', 'cf-chl-out': '1nHr5feiK3aJv+CzYrAFS71+AvjZLhfUzt2oTYkprAUgRaSx9lHqtVkqJkfDr01FS5Zu91ok54H6z5rZYSahqFBB1JGrfVfjekXeRyGL2SEuAonGSRAeelvLR3PM3BKysuHgKRrIHOGETIfvHJ4m0w==$MznRNLB7D5c5+cqXpGzRSQ==', 'cf-mitigated': 'challenge', 'cf-ray': '90aeeb0d0ec82f11-LAX', 'content-encoding': 'gzip', 'content-type': 'text/html; charset=UTF-8', 'critical-ch': 'Sec-CH-UA-Bitness, Sec-CH-UA-Arch, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform, Sec-CH-UA, UA-Bitness, UA-Arch, UA-Full-Version, UA-Mobile, UA-Model, UA-Platform-Version, UA-Platform, UA', 'cross-origin-embedder-policy': 'require-corp', 'cross-origin-opener-policy': 'same-origin', 'cross-origin-resource-policy': 'same-origin', 'date': 'Sat, 01 Feb 2025 03:40:06 GMT', 'expires': 'Thu, 01 Jan 1970 00:00:01 GMT', 'origin-agent-cluster': '?1', 'permissions-policy': 'accelerometer=(),autoplay=(),browsing-topics=(),camera=(),clipboard-read=(),clipboard-write=(),geolocation=(),gyroscope=(),hid=(),interest-cohort=(),magnetometer=(),microphone=(),payment=(),publickey-credentials-get=(),screen-wake-lock=(),serial=(),sync-xhr=(),usb=()', 'referrer-policy': 'same-origin', 'server': 'cloudflare', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'vary': 'Accept-Encoding', 'x-content-options': 'nosniff', 'x-content-type-options': 'nosniff', 'x-frame-options': 'SAMEORIGIN'}
+2025-02-01 11:40:10.346 | WARNING  | api_monitor.monitor:check_web_status:188 - 等待网络空闲超时，但继续检查
+2025-02-01 11:40:10.945 | INFO     | api_monitor.monitor:monitor_once:303 - DeepSeek 服务状态报告
+
+📅 检测时间: 2025-02-01 11:40:10
+
+服务状态:
+🟢 API: API检查已跳过（未配置密钥）
+🟢 网页版: 网页版服务正常
+
+📊 监控信息:
+• 连续错误次数: 0/3
+• 检测间隔: 60秒
+• 下次检测: 11:41:10
+
+🔗 快速访问:
+https://chat.deepseek.com
+2025-02-01 11:41:10.959 | INFO     | api_monitor.monitor:monitor_once:227 - 开始执行监控检查...
+2025-02-01 11:41:10.960 | INFO     | api_monitor.monitor:check_api_status:83 - 正在检查 API 状态...
+2025-02-01 11:41:10.960 | INFO     | api_monitor.monitor:check_api_status:86 - API密钥未配置，跳过API检查
+2025-02-01 11:41:10.960 | INFO     | api_monitor.monitor:check_web_status:123 - 正在检查网页版状态...
+2025-02-01 11:41:12.761 | INFO     | api_monitor.monitor:check_web_status:162 - 正在连接网页: https://chat.deepseek.com (第1次尝试)
+2025-02-01 11:41:13.984 | INFO     | api_monitor.monitor:check_web_status:181 - 网页响应状态码: 403
+2025-02-01 11:41:13.985 | INFO     | api_monitor.monitor:check_web_status:182 - 网页响应头: {'accept-ch': 'Sec-CH-UA-Bitness, Sec-CH-UA-Arch, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform, Sec-CH-UA, UA-Bitness, UA-Arch, UA-Full-Version, UA-Mobile, UA-Model, UA-Platform-Version, UA-Platform, UA', 'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0', 'cf-chl-out': 'tqlrN7Ymv4IXr4I2uPvdlMs4UhRtvPWhKV5QsJaFigPcspSLB+JOrpXvI5dzCTtb4j0el7AlWjiSIumhCAHk04Se7i0vsKDSSlTAzbpN/ToJCmmr8vTEVNgutAe0kYlmhHnDo6zlAsjKR//G0ed3/w==$Rjchg7gkGhovUO8XQ2klHA==', 'cf-mitigated': 'challenge', 'cf-ray': '90aeecba2d7b7e74-LAX', 'content-encoding': 'gzip', 'content-type': 'text/html; charset=UTF-8', 'critical-ch': 'Sec-CH-UA-Bitness, Sec-CH-UA-Arch, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform, Sec-CH-UA, UA-Bitness, UA-Arch, UA-Full-Version, UA-Mobile, UA-Model, UA-Platform-Version, UA-Platform, UA', 'cross-origin-embedder-policy': 'require-corp', 'cross-origin-opener-policy': 'same-origin', 'cross-origin-resource-policy': 'same-origin', 'date': 'Sat, 01 Feb 2025 03:41:15 GMT', 'expires': 'Thu, 01 Jan 1970 00:00:01 GMT', 'origin-agent-cluster': '?1', 'permissions-policy': 'accelerometer=(),autoplay=(),browsing-topics=(),camera=(),clipboard-read=(),clipboard-write=(),geolocation=(),gyroscope=(),hid=(),interest-cohort=(),magnetometer=(),microphone=(),payment=(),publickey-credentials-get=(),screen-wake-lock=(),serial=(),sync-xhr=(),usb=()', 'referrer-policy': 'same-origin', 'server': 'cloudflare', 'strict-transport-security': 'max-age=31536000; includeSubDomains; preload', 'vary': 'Accept-Encoding', 'x-content-options': 'nosniff', 'x-content-type-options': 'nosniff', 'x-frame-options': 'SAMEORIGIN'}
+2025-02-01 11:41:18.978 | WARNING  | api_monitor.monitor:check_web_status:188 - 等待网络空闲超时，但继续检查
+2025-02-01 11:41:19.587 | INFO     | api_monitor.monitor:monitor_once:303 - DeepSeek 服务状态报告
+
+📅 检测时间: 2025-02-01 11:41:19
+
+服务状态:
+🟢 API: API检查已跳过（未配置密钥）
+🟢 网页版: 网页版服务正常
+
+📊 监控信息:
+• 连续错误次数: 0/3
+• 检测间隔: 60秒
+• 下次检测: 11:42:19
+
+🔗 快速访问:
+https://chat.deepseek.com
