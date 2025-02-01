@@ -18,7 +18,7 @@ API_CONFIG = {
 
 # 监测配置
 MONITOR_CONFIG = {
-    'check_interval': 300,  # 检查间隔（秒）
+    'check_interval': 600,  # 检查间隔（秒）
     'error_threshold': 3,   # 连续错误阈值
     'log_file': 'logs/api_monitor.log',
     'test_message': "Hello",  # 用于测试的消息
