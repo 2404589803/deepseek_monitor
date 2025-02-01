@@ -1,0 +1,54 @@
+name: DeepSeek Monitor
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '*/30 * * * *'  # 每30分钟运行一次
+  workflow_dispatch:  # 支持手动触发
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Cache pip packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+          
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Create env file
+      run: |
+        echo "DEEPSEEK_API_KEY=${{ secrets.DEEPSEEK_API_KEY }}" >> config/.env
+        echo "ENABLE_SERVERCHAN=${{ secrets.ENABLE_SERVERCHAN }}" >> config/.env
+        echo "SERVERCHAN_KEY=${{ secrets.SERVERCHAN_KEY }}" >> config/.env
+        echo "ENABLE_TELEGRAM=${{ secrets.ENABLE_TELEGRAM }}" >> config/.env
+        echo "TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}" >> config/.env
+        echo "TELEGRAM_CHAT_ID=${{ secrets.TELEGRAM_CHAT_ID }}" >> config/.env
+        echo "ENABLE_EMAIL=${{ secrets.ENABLE_EMAIL }}" >> config/.env
+        echo "SMTP_SERVER=${{ secrets.SMTP_SERVER }}" >> config/.env
+        echo "SMTP_PORT=${{ secrets.SMTP_PORT }}" >> config/.env
+        echo "SMTP_USERNAME=${{ secrets.SMTP_USERNAME }}" >> config/.env
+        echo "SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}" >> config/.env
+        echo "ALERT_RECIPIENTS=${{ secrets.ALERT_RECIPIENTS }}" >> config/.env
+        
+    - name: Run monitor
+      run: |
+        python src/main.py
+      env:
+        PYTHONUNBUFFERED: 1 

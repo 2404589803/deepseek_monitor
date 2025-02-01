@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek 监控推送订阅</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        button:disabled {
+            background: #cccccc;
+        }
+        #status {
+            margin: 20px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background: #dff0d8;
+            color: #3c763d;
+        }
+        .error {
+            background: #f2dede;
+            color: #a94442;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DeepSeek 监控推送订阅</h1>
+        <p>点击下方按钮订阅监控通知</p>
+        <button id="subscribe">订阅通知</button>
+        <button id="unsubscribe" disabled>取消订阅</button>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        const vapidPublicKey = '{{ vapid_public_key }}';
+        let subscription = null;
+
+        // 检查是否支持推送
+        if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+            document.getElementById('status').textContent = '您的浏览器不支持推送通知';
+            document.getElementById('status').className = 'error';
+            document.getElementById('subscribe').disabled = true;
+        }
+
+        // 注册 Service Worker
+        async function registerServiceWorker() {
+            try {
+                const registration = await navigator.serviceWorker.register('/sw.js');
+                return registration;
+            } catch (err) {
+                throw new Error('Service Worker 注册失败: ' + err.message);
+            }
+        }
+
+        // 订阅推送
+        async function subscribePush() {
+            try {
+                const registration = await registerServiceWorker();
+                const subscribeOptions = {
+                    userVisibleOnly: true,
+                    applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
+                };
+                subscription = await registration.pushManager.subscribe(subscribeOptions);
+                
+                // 发送订阅信息到服务器
+                const response = await fetch('/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(subscription)
+                });
+
+                if (response.ok) {
+                    document.getElementById('status').textContent = '订阅成功！您将收到监控通知';
+                    document.getElementById('status').className = 'success';
+                    document.getElementById('subscribe').disabled = true;
+                    document.getElementById('unsubscribe').disabled = false;
+                } else {
+                    throw new Error('订阅请求失败');
+                }
+            } catch (err) {
+                document.getElementById('status').textContent = '订阅失败: ' + err.message;
+                document.getElementById('status').className = 'error';
+            }
+        }
+
+        // 取消订阅
+        async function unsubscribePush() {
+            try {
+                const registration = await navigator.serviceWorker.ready;
+                const subscription = await registration.pushManager.getSubscription();
+                if (subscription) {
+                    await subscription.unsubscribe();
+                    // 通知服务器取消订阅
+                    await fetch('/unsubscribe', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(subscription)
+                    });
+                    document.getElementById('status').textContent = '已取消订阅';
+                    document.getElementById('status').className = 'success';
+                    document.getElementById('subscribe').disabled = false;
+                    document.getElementById('unsubscribe').disabled = true;
+                }
+            } catch (err) {
+                document.getElementById('status').textContent = '取消订阅失败: ' + err.message;
+                document.getElementById('status').className = 'error';
+            }
+        }
+
+        // Base64 URL 转 Uint8Array
+        function urlBase64ToUint8Array(base64String) {
+            const padding = '='.repeat((4 - base64String.length % 4) % 4);
+            const base64 = (base64String + padding)
+                .replace(/\-/g, '+')
+                .replace(/_/g, '/');
+            const rawData = window.atob(base64);
+            const outputArray = new Uint8Array(rawData.length);
+            for (let i = 0; i < rawData.length; ++i) {
+                outputArray[i] = rawData.charCodeAt(i);
+            }
+            return outputArray;
+        }
+
+        // 绑定按钮事件
+        document.getElementById('subscribe').addEventListener('click', subscribePush);
+        document.getElementById('unsubscribe').addEventListener('click', unsubscribePush);
+
+        // 检查当前订阅状态
+        async function checkSubscription() {
+            try {
+                const registration = await navigator.serviceWorker.ready;
+                const subscription = await registration.pushManager.getSubscription();
+                if (subscription) {
+                    document.getElementById('subscribe').disabled = true;
+                    document.getElementById('unsubscribe').disabled = false;
+                    document.getElementById('status').textContent = '已订阅监控通知';
+                    document.getElementById('status').className = 'success';
+                }
+            } catch (err) {
+                console.error('检查订阅状态失败:', err);
+            }
+        }
+
+        // 页面加载完成后检查订阅状态
+        window.addEventListener('load', checkSubscription);
+    </script>
+</body>
+</html> 
