@@ -2,13 +2,15 @@ name: DeepSeek Monitor
 
 on:
   schedule:
-    - cron: '*/30 * * * *'  # 每30分钟运行一次
+    - cron: '30 */1 * * *'  # 每小时的30分运行（北京时间）
   workflow_dispatch:  # 支持手动触发
 
 jobs:
   monitor:
     runs-on: ubuntu-22.04
     timeout-minutes: 5  # 设置超时时间
+    env:
+      TZ: Asia/Shanghai  # 设置时区为北京时间
     
     steps:
     - uses: actions/checkout@v3
@@ -81,7 +83,7 @@ jobs:
         curl -X POST \
           "https://sctapi.ftqq.com/${{ secrets.SERVERCHAN_KEY }}.send" \
           -d "title=🚨 DeepSeek监控工作流执行失败" \
-          -d "desp=工作流执行时间: $(date '+%Y-%m-%d %H:%M:%S')%0A%0A请检查GitHub Actions日志以获取详细信息：%0A${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          -d "desp=工作流执行时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')%0A%0A请检查GitHub Actions日志以获取详细信息：%0A${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
       continue-on-error: true  # 即使发送失败通知失败也不影响工作流状态
       
     - name: Clean up
