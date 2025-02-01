@@ -66,7 +66,9 @@ jobs:
         echo "TELEGRAM_CHAT_ID=${{ secrets.TELEGRAM_CHAT_ID }}" >> config/.env
         
     - name: Create log directory
-      run: mkdir -p logs
+      run: |
+        mkdir -p logs
+        touch logs/monitor.log
         
     - name: Run monitor
       id: monitor
@@ -80,7 +82,10 @@ jobs:
     - name: Send status notification
       if: always()  # 无论成功失败都发送状态通知
       run: |
+        # 获取最新的监控结果
+        MONITOR_RESULT=$(tail -n 50 logs/monitor.log | grep -A 10 "DeepSeek 服务状态报告" | tail -n 11)
         STATUS="${{ steps.monitor.outcome }}"
+        
         if [ "$STATUS" = "success" ]; then
           TITLE="✅ DeepSeek监控检查完成"
           ICON="🟢"
@@ -89,14 +94,29 @@ jobs:
           ICON="🔴"
         fi
         
+        # 构建通知内容（使用%0A作为换行符）
+        MESSAGE="${ICON} 检查时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')%0A%0A监控结果：%0A${MONITOR_RESULT}%0A%0A详细日志：%0A${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        
+        # 发送通知
+        echo "发送通知..."
+        echo "标题: ${TITLE}"
+        echo "内容: ${MESSAGE}"
+        
         curl -X POST \
           "https://sctapi.ftqq.com/${{ secrets.SERVERCHAN_KEY }}.send" \
           -d "title=${TITLE}" \
-          -d "desp=${ICON} 检查时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')%0A%0A详细日志：%0A${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          -d "desp=${MESSAGE}" \
+          -H "Content-Type: application/x-www-form-urlencoded"
       continue-on-error: true
       
+    - name: Upload logs
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: monitor-logs
+        path: logs/monitor.log
+        
     - name: Clean up
       if: always()  # 无论成功失败都执行清理
       run: |
-        rm -rf logs/*  # 清理日志文件
         rm -rf /tmp/.X*-lock || true  # 清理可能的X server锁文件 
