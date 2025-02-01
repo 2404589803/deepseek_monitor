@@ -1,21 +1,17 @@
 # -*- coding: utf-8 -*-
-"""
-DeepSeek 监控系统入口
-"""
-
 import asyncio
 from loguru import logger
 from api_monitor.monitor import DeepSeekAPIMonitor
 
 async def main():
     try:
-        logger.info("启动 DeepSeek 监控系统")
+        logger.info("Starting DeepSeek Monitor")
         monitor = DeepSeekAPIMonitor()
         await monitor.start_monitoring()
     except KeyboardInterrupt:
-        logger.info("监控系统已停止")
+        logger.info("Monitor stopped")
     except Exception as e:
-        logger.error(f"监控系统发生错误: {str(e)}")
+        logger.error(f"Error: {str(e)}")
         raise
 
 if __name__ == "__main__":

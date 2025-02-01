@@ -1,27 +1,30 @@
-from pathlib import Path
-from dotenv import load_dotenv
+﻿# -*- coding: utf-8 -*-
+"""
+配置文件
+"""
+
 import os
+from dotenv import load_dotenv
 
 # 加载环境变量
-env_path = Path(__file__).parent / '.env'
-load_dotenv(env_path)
+load_dotenv('config/.env')
 
 # API配置
 API_CONFIG = {
-    'base_url': 'https://api.deepseek.com',
-    'api_key': os.getenv('DEEPSEEK_API_KEY'),
+    'base_url': 'https://api.deepseek.com/v1',  # DeepSeek API基础URL
+    'api_key': os.getenv('DEEPSEEK_API_KEY'),  # API密钥
     'timeout': 30,  # 请求超时时间（秒）
     'max_retries': 3,  # 最大重试次数
-    'model': 'deepseek-chat',  # 默认模型
-    'web_url': 'https://chat.deepseek.com/'  # 网页版地址
+    'model': 'deepseek-chat',  # 使用的模型名称
+    'web_url': 'https://chat.deepseek.com'  # DeepSeek网页版URL
 }
 
-# 监测配置
+# 监控配置
 MONITOR_CONFIG = {
-    'check_interval': 600,  # 检查间隔（秒）
-    'error_threshold': 3,   # 连续错误阈值
-    'log_file': 'logs/api_monitor.log',
-    'test_message': "Hello",  # 用于测试的消息
+    'check_interval': 300,  # 检查间隔（秒）
+    'error_threshold': 3,  # 连续错误阈值
+    'test_message': 'Hello, this is a test message.',  # 测试消息
+    'log_file': 'logs/monitor.log'  # 日志文件路径
 }
 
 # 告警配置

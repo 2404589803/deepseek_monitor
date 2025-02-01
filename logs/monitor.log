@@ -1,0 +1,26 @@
+2025-02-01 10:54:16.886 | INFO     | api_monitor.monitor:start_monitoring:169 - 开始监控 DeepSeek 服务状态
+2025-02-01 10:57:08.953 | INFO     | api_monitor.monitor:start_monitoring:169 - 开始监控 DeepSeek 服务状态
+2025-02-01 10:58:05.671 | INFO     | api_monitor.monitor:start_monitoring:109 - 开始监控 DeepSeek 服务状态
+2025-02-01 11:00:00.120 | INFO     | api_monitor.monitor:start_monitoring:109 - 开始监控 DeepSeek 服务状态
+2025-02-01 11:01:42.098 | INFO     | api_monitor.monitor:start_monitoring:128 - 开始监控 DeepSeek 服务状态
+2025-02-01 11:01:42.099 | INFO     | api_monitor.monitor:test_push:42 - 正在测试推送功能...
+2025-02-01 11:01:42.099 | ERROR    | api_monitor.monitor:test_push:55 - 测试推送发送失败
+2025-02-01 11:02:18.640 | INFO     | api_monitor.monitor:start_monitoring:128 - 开始监控 DeepSeek 服务状态
+2025-02-01 11:02:18.640 | INFO     | api_monitor.monitor:test_push:42 - 正在测试推送功能...
+2025-02-01 11:02:18.640 | ERROR    | api_monitor.monitor:test_push:55 - 测试推送发送失败
+2025-02-01 11:02:46.392 | INFO     | api_monitor.monitor:start_monitoring:128 - 开始监控 DeepSeek 服务状态
+2025-02-01 11:02:46.393 | INFO     | api_monitor.monitor:test_push:42 - 正在测试推送功能...
+2025-02-01 11:02:46.393 | ERROR    | api_monitor.monitor:test_push:55 - 测试推送发送失败
+2025-02-01 11:03:14.622 | INFO     | api_monitor.monitor:start_monitoring:128 - 开始监控 DeepSeek 服务状态
+2025-02-01 11:03:14.622 | INFO     | api_monitor.monitor:test_push:42 - 正在测试推送功能...
+2025-02-01 11:03:14.623 | ERROR    | api_monitor.monitor:test_push:55 - 测试推送发送失败
+2025-02-01 11:04:11.654 | INFO     | api_monitor.monitor:start_monitoring:128 - 开始监控 DeepSeek 服务状态
+2025-02-01 11:04:11.655 | INFO     | api_monitor.monitor:test_push:42 - 正在测试推送功能...
+2025-02-01 11:04:11.655 | ERROR    | api_monitor.monitor:test_push:55 - 测试推送发送失败
+2025-02-01 11:05:31.398 | INFO     | api_monitor.monitor:start_monitoring:128 - 开始监控 DeepSeek 服务状态
+2025-02-01 11:05:31.399 | INFO     | api_monitor.monitor:test_push:42 - 正在测试推送功能...
+2025-02-01 11:05:31.399 | INFO     | api_monitor.push_service:send_push:136 - 尝试发送Server酱推送
+2025-02-01 11:05:31.400 | INFO     | api_monitor.push_service:send_serverchan:72 - 正在发送Server酱推送: https://sctapi.ftqq.com/SCT268620T8SsHNSfDkAYxbiinkUSB9v23.send
+2025-02-01 11:05:35.001 | INFO     | api_monitor.push_service:send_serverchan:76 - Server酱响应: {"code":0,"message":"","data":{"pushid":"191138590","readkey":"SCTkJhQBTl5GR8r","error":"SUCCESS","errno":0}}
+2025-02-01 11:05:35.001 | INFO     | api_monitor.push_service:send_serverchan:81 - Server酱推送成功
+2025-02-01 11:05:35.002 | INFO     | api_monitor.monitor:test_push:53 - 测试推送发送成功
