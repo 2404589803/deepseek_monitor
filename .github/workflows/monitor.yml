@@ -87,15 +87,18 @@ jobs:
         STATUS="${{ steps.monitor.outcome }}"
         
         if [ "$STATUS" = "success" ]; then
-          TITLE="✅ DeepSeek监控检查完成"
-          ICON="🟢"
+          TITLE="DeepSeek服务状态"
+          ICON="✅"
         else
-          TITLE="🚨 DeepSeek监控检查失败"
-          ICON="🔴"
+          TITLE="DeepSeek服务异常"
+          ICON="🚨"
         fi
         
-        # 构建通知内容（使用%0A作为换行符）
-        MESSAGE="${ICON} 检查时间: $(TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M:%S')%0A%0A监控结果：%0A${MONITOR_RESULT}%0A%0A详细日志：%0A${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        # 格式化监控结果，去除ANSI颜色代码
+        CLEAN_RESULT=$(echo "$MONITOR_RESULT" | sed 's/\x1b\[[0-9;]*m//g')
+        
+        # 构建通知内容
+        MESSAGE="${CLEAN_RESULT}"
         
         # 发送通知
         echo "发送通知..."

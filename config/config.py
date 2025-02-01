@@ -10,7 +10,7 @@ API_CONFIG = {
 }
 
 MONITOR_CONFIG = {
-    'check_interval': 60,  # 缩短检查间隔到60秒
+    'check_interval': 3600,  # 设置检查间隔为1小时
     'error_threshold': 3,   # 连续错误阈值
     'test_message': '这是一条来自 DeepSeek 监控服务的测试消息',  # 测试消息
     'log_file': 'logs/monitor.log'  # 日志文件路径
